@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana De Moya | Beauty Content Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --fuchsia: #FF00FF;
+            --hot-pink: #E31F71;
+            --soft-pink: #FFB6C1;
+            --dark-gray: #2A2A2A;
+            --black: #000000;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            transition: background-color 0.5s ease;
+        }
+        
+        /* Language Toggle */
+        .language-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            display: flex;
+            background-color: rgba(42, 42, 42, 0.8);
+            border-radius: 30px;
+            padding: 5px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .language-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .language-btn.active {
+            background-color: var(--fuchsia);
+            color: var(--white);
+        }
+        
+        /* Portada/Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(227,31,113,0.1), rgba(255,0,255,0.1));
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+        
+        .hero:hover::before {
+            opacity: 1;
+        }
+        
+        .hero-content {
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        
+        .hero p {
+            font-size: 1.8rem;
+            color: var(--soft-pink);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .scroll-down:hover {
+            color: var(--fuchsia);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
+        }
+        
+        /* Menú */
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(42, 42, 42, 0.95);
+            padding: 1.5rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transform: translateY(-100%);
+            animation: slideDown 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        .menu ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .menu li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .menu li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--fuchsia);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .menu li a:hover::after,
+        .menu li a.active::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        .menu li a:hover, .menu li a.active {
+            color: var(--fuchsia);
+        }
+        
+        /* Secciones */
+        .section {
+            padding: 6rem 2rem;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--hot-pink);
+            text-align: center;
+            position: relative;
+            font-weight: 800;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--fuchsia);
+            margin: 1rem auto;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.6s ease 0.3s;
+        }
+        
+        .section.visible .section-title:after {
+            transform: scaleX(1);
+        }
+        
+        /* Videos de Maquillaje & Skincare */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            transform: translateY(20px);
+            opacity: 0;
+        }
+        
+        .section.visible .video-card {
+            animation: fadeInUpCards 0.6s ease forwards;
+        }
+        
+        .video-card:nth-child(1) { animation-delay: 0.2s; }
+        .video-card:nth-child(2) { animation-delay: 0.3s; }
+        .video-card:nth-child(3) { animation-delay: 0.4s; }
+        .video-card:nth-child(4) { animation-delay: 0.5s; }
+        .video-card:nth-child(5) { animation-delay: 0.6s; }
+        .video-card:nth-child(6) { animation-delay: 0.7s; }
+        
+        @keyframes fadeInUpCards {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(227, 31, 113, 0.2);
+        }
+        
+        .video-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .video-card:hover img {
+            transform: scale(1.1);
+        }
+        
+        .video-info {
+            padding: 1.5rem;
+            background-color: var(--white);
+        }
+        
+        .video-info h3 {
+            color: var(--dark-gray);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        
+        .video-info p {
+            color: var(--hot-pink);
+            font-weight: 500;
+        }
+        
+        /* Fotos de Maquillaje */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 1/1;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .section.visible .photo-item {
+            animation: scaleIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .photo-item:nth-child(1) { animation-delay: 0.1s; }
+        .photo-item:nth-child(2) { animation-delay: 0.2s; }
+        .photo-item:nth-child(3) { animation-delay: 0.3s; }
+        .photo-item:nth-child(4) { animation-delay: 0.4s; }
+        .photo-item:nth-child(5) { animation-delay: 0.5s; }
+        .photo-item:nth-child(6) { animation-delay: 0.6s; }
+        
+        @keyframes scaleIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .photo-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(227, 31, 113, 0.3), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1;
+        }
+        
+        .photo-item:hover::before {
+            opacity: 1;
+        }
+        
+        /* Sobre Mí */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            transform: translateX(-30px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .section.visible .about-text {
+            transform: translateX(0);
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            transform: translateX(30px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .section.visible .about-image {
+            transform: translateX(0);
+            opacity: 1;
+            transition-delay: 0.5s;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(227, 31, 113, 0.3);
+        }
+        
+        /* Estadísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .stat-item {
+            background-color: var(--soft-pink);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            transform: translateY(30px);
+            opacity: 0;
+        }
+        
+        .section.visible .stat-item {
+            animation: fadeInUpStats 0.6s ease forwards;
+        }
+        
+        .stat-item:nth-child(1) { animation-delay: 0.2s; }
+        .stat-item:nth-child(2) { animation-delay: 0.3s; }
+        .stat-item:nth-child(3) { animation-delay: 0.4s; }
+        .stat-item:nth-child(4) { animation-delay: 0.5s; }
+        
+        @keyframes fadeInUpStats {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            background-color: var(--white);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--fuchsia);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+        
+        /* Marcas */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 2rem;
+            align-items: center;
+            justify-items: center;
+        }
+        
+        .brand-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            transform: scale(0.9);
+            opacity: 0;
+        }
+        
+        .section.visible .brand-item {
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        .brand-item:nth-child(1) { animation-delay: 0.1s; }
+        .brand-item:nth-child(2) { animation-delay: 0.2s; }
+        .brand-item:nth-child(3) { animation-delay: 0.3s; }
+        .brand-item:nth-child(4) { animation-delay: 0.4s; }
+        .brand-item:nth-child(5) { animation-delay: 0.5s; }
+        .brand-item:nth-child(6) { animation-delay: 0.6s; }
+        .brand-item:nth-child(7) { animation-delay: 0.7s; }
+        .brand-item:nth-child(8) { animation-delay: 0.8s; }
+        .brand-item:nth-child(9) { animation-delay: 0.9s; }
+        .brand-item:nth-child(10) { animation-delay: 1.0s; }
+        .brand-item:nth-child(11) { animation-delay: 1.1s; }
+        .brand-item:nth-child(12) { animation-delay: 1.2s; }
+        .brand-item:nth-child(13) { animation-delay: 1.3s; }
+        .brand-item:nth-child(14) { animation-delay: 1.4s; }
+        .brand-item:nth-child(15) { animation-delay: 1.5s; }
+        
+        @keyframes popIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .brand-item:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 5px 20px rgba(227, 31, 113, 0.2);
+        }
+        
+        .brand-item img {
+            max-width: 100%;
+            max-height: 60px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: var(--transition);
+        }
+        
+        .brand-item:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        
+        /* Por qué yo */
+        .why-me {
+            background-color: var(--soft-pink);
+            padding: 4rem 2rem;
+            border-radius: 15px;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .section.visible .why-me {
+            transform: scale(1);
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+        
+        .why-me p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: var(--fuchsia);
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--fuchsia);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .why-me:hover .highlight::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        /* Contacto */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            transform: translateX(-30px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .section.visible .contact-info {
+            transform: translateX(0);
+            opacity: 1;
+            transition-delay: 0.3s;
+        }
+        
+        .contact-info h3 {
+            color: var(--hot-pink);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .contact-info a {
+            color: var(--dark-gray);
+            text-decoration: none;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .contact-info a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--dark-gray);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-info a:hover {
+            color: var(--fuchsia);
+        }
+        
+        .contact-info a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+            background-color: var(--fuchsia);
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+            transform: translateX(30px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .section.visible .contact-form {
+            transform: translateX(0);
+            opacity: 1;
+            transition-delay: 0.5s;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--soft-pink);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--fuchsia);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 0, 255, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--fuchsia);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--hot-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(227, 31, 113, 0.3);
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--fuchsia);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .menu ul {
+                gap: 1rem;
+            }
+            
+            .menu li a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.8rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .about-content, .contact-container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .about-text, .about-image, .contact-info, .contact-form {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .menu ul {
+                gap: 0.5rem;
+            }
+            
+            .menu li a {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .language-toggle {
+                top: 15px;
+                right: 15px;
+            }
+            
+            .language-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="language-toggle">
+        <button class="language-btn active" id="es-btn">ES</button>
+        <button class="language-btn" id="en-btn">EN</button>
+    </div>
+    
+    <!-- Portada -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-es="Ana De Moya" data-en="Ana De Moya">Ana De Moya</h1>
+            <p data-es="Beauty Content Creator" data-en="Beauty Content Creator">Beauty Content Creator</p>
+        </div>
+        <a href="#menu" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+    </section>
+    
+    <!-- Menú -->
+    <nav class="menu" id="menu">
+        <ul>
+            <li><a href="#home" class="active" data-es="Inicio" data-en="Home">Inicio</a></li>
+            <li><a href="#videos" data-es="Videos" data-en="Videos">Videos</a></li>
+            <li><a href="#fotos" data-es="Fotos" data-en="Photos">Fotos</a></li>
+            <li><a href="#about" data-es="Sobre Mí" data-en="About Me">Sobre Mí</a></li>
+            <li><a href="#stats" data-es="Estadísticas" data-en="Stats">Estadísticas</a></li>
+            <li><a href="#brands" data-es="Marcas" data-en="Brands">Marcas</a></li>
+            <li><a href="#why" data-es="¿Por qué yo?" data-en="Why Me?">¿Por qué yo?</a></li>
+            <li><a href="#contact" data-es="Contacto" data-en="Contact">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Videos de Maquillaje & Skincare -->
+    <section class="section" id="videos">
+        <h2 class="section-title" data-es="Videos de Maquillaje & Skincare" data-en="Makeup & Skincare Videos">Videos de Maquillaje & Skincare</h2>
+        <div class="video-grid">
+            <div class="video-card">
+                <img src="tutorial-thumbnail.jpg" alt="Tutorial">
+                <div class="video-info">
+                    <h3 data-es="TUTORIAL" data-en="TUTORIAL">TUTORIAL</h3>
+                    <p data-es="Cut Crease para ojos caídos" data-en="Cut Crease for hooded eyes">Cut Crease para ojos caídos</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="grwm-thumbnail.jpg" alt="GRWM">
+                <div class="video-info">
+                    <h3 data-es="GRWM" data-en="GRWM">GRWM</h3>
+                    <p data-es="Maquillaje para fiesta" data-en="Party makeup">Maquillaje para fiesta</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="problem-thumbnail.jpg" alt="Problem/Solution">
+                <div class="video-info">
+                    <h3 data-es="PROBLEM/SOLUTION" data-en="PROBLEM/SOLUTION">PROBLEM/SOLUTION</h3>
+                    <p data-es="Ojos irritados con maquillaje" data-en="Irritated eyes with makeup">Ojos irritados con maquillaje</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="review-thumbnail.jpg" alt="Review">
+                <div class="video-info">
+                    <h3 data-es="REVIEW" data-en="REVIEW">REVIEW</h3>
+                    <p data-es="Nuevo serum de Purito" data-en="New Purito serum">Nuevo serum de Purito</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="unboxing-thumbnail.jpg" alt="Unboxing">
+                <div class="video-info">
+                    <h3 data-es="UNBOXING" data-en="UNBOXING">UNBOXING</h3>
+                    <p data-es="Nuevos productos Heimish" data-en="New Heimish products">Nuevos productos Heimish</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <img src="beforeafter-thumbnail.jpg" alt="Before & After">
+                <div class="video-info">
+                    <h3 data-es="BEFORE & AFTER" data-en="BEFORE & AFTER">BEFORE & AFTER</h3>
+                    <p data-es="Rutina de skincare completo" data-en="Complete skincare routine">Rutina de skincare completo</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Fotos de Maquillaje -->
+    <section class="section" id="fotos">
+        <h2 class="section-title" data-es="Fotos de Maquillaje" data-en="Makeup Photos">Fotos de Maquillaje</h2>
+        <div class="photo-grid">
+            <div class="photo-item">
+                <img src="makeup-photo1.jpg" data-es="Maquillaje social" data-en="Social makeup">
+            </div>
+            <div class="photo-item">
+                <img src="makeup-photo2.jpg" data-es="Maquillaje glam" data-en="Glam makeup">
+            </div>
+            <div class="photo-item">
+                <img src="makeup-photo3.jpg" data-es="Maquillaje colorido" data-en="Colorful makeup">
+            </div>
+            <div class="photo-item">
+                <img src="makeup-photo4.jpg" data-es="Maquillaje gráfico" data-en="Graphic makeup">
+            </div>
+            <div class="photo-item">
+                <img src="skincare-photo1.jpg" data-es="Rutina skincare" data-en="Skincare routine">
+            </div>
+            <div class="photo-item">
+                <img src="skincare-photo2.jpg" data-es="Resultados skincare" data-en="Skincare results">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sobre Mí -->
+    <section class="section" id="about">
+        <h2 class="section-title" data-es="Sobre Mí" data-en="About Me">Sobre Mí</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p data-es="Mi nombre es Ana. Tengo las habilidades para crear videos que cautiven a cualquier audiencia." data-en="My name is Ana. I have the skills to create videos that captivate any audience.">Mi nombre es Ana. Tengo las habilidades para crear videos que cautiven a cualquier audiencia.</p>
+                <p data-es="Durante 2 años y 3 meses, me he dedicado a crear contenido de belleza. Me especializo en maquillaje social, glam, colorido y gráfico, compartiendo tutoriales, consejos y videos 'get ready with me' de una manera divertida y entretenida." data-en="For 2 years and 3 months, I've been dedicated to creating beauty content. I specialize in social, glam, colorful and graphic makeup, sharing tutorials, tips and 'get ready with me' videos in a fun and entertaining way.">Durante 2 años y 3 meses, me he dedicado a crear contenido de belleza. Me especializo en maquillaje social, glam, colorido y gráfico, compartiendo tutoriales, consejos y videos "get ready with me" de una manera divertida y entretenida.</p>
+                <p data-es="Estoy altamente comprometida con la creación de videos que cautiven nuevas audiencias, impulsando tanto la conversión como el posicionamiento de marca." data-en="I'm highly committed to creating videos that captivate new audiences, driving both conversion and brand positioning.">Estoy altamente comprometida con la creación de videos que cautiven nuevas audiencias, impulsando tanto la conversión como el posicionamiento de marca.</p>
+            </div>
+            <div class="about-image">
+                <img src="ana-profile.jpg" alt="Ana De Moya">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Estadísticas -->
+    <section class="section" id="stats">
+        <h2 class="section-title" data-es="Estadísticas" data-en="Statistics">Estadísticas</h2>
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">15,735</div>
+                <div class="stat-label" data-es="Máximo de visualizaciones" data-en="Max views">Máximo de visualizaciones</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2,500+</div>
+                <div class="stat-label" data-es="Promedio en Instagram" data-en="Instagram average">Promedio en Instagram</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">10,000+</div>
+                <div class="stat-label" data-es="Máximo en TikTok" data-en="TikTok max">Máximo en TikTok</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">68.3%</div>
+                <div class="stat-label" data-es="Tasa de engagement" data-en="Engagement rate">Tasa de engagement</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Marcas -->
+    <section class="section" id="brands">
+        <h2 class="section-title" data-es="Marcas con las que he trabajado" data-en="Brands I've worked with">Marcas con las que he trabajado</h2>
+        <div class="brands-grid">
+            <div class="brand-item">
+                <img src="oulac-logo.png" alt="Oulac">
+            </div>
+            <div class="brand-item">
+                <img src="pacifica-logo.png" alt="Pacifica">
+            </div>
+            <div class="brand-item">
+                <img src="phoenix-logo.png" alt="Phoenix Rising">
+            </div>
+            <div class="brand-item">
+                <img src="bubble-logo.png" alt="Bubble">
+            </div>
+            <div class="brand-item">
+                <img src="biom-logo.png" alt="Biöm">
+            </div>
+            <div class="brand-item">
+                <img src="laura-logo.png" alt="Laura Geller">
+            </div>
+            <div class="brand-item">
+                <img src="dodolashes-logo.png" alt="Dodolashes">
+            </div>
+            <div class="brand-item">
+                <img src="vertex-logo.png" alt="Vertex Brushes">
+            </div>
+            <div class="brand-item">
+                <img src="dermala-logo.png" alt="Dermala">
+            </div>
+            <div class="brand-item">
+                <img src="stylekorean-logo.png" alt="Stylekorean">
+            </div>
+            <div class="brand-item">
+                <img src="purito-logo.png" alt="Purito">
+            </div>
+            <div class="brand-item">
+                <img src="brightjungle-logo.png" alt="Bright Jungle">
+            </div>
+            <div class="brand-item">
+                <img src="heimish-logo.png" alt="Heimish">
+            </div>
+            <div class="brand-item">
+                <img src="ohmychewy-logo.png" alt="Oh My Chewy">
+            </div>
+            <div class="brand-item">
+                <img src="frankly-logo.png" alt="Frankly">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Por qué yo -->
+    <section class="section" id="why">
+        <h2 class="section-title" data-es="¿Por qué yo?" data-en="Why Me?">¿Por qué yo?</h2>
+        <div class="why-me">
+            <p data-es="A pesar de tener una comunidad en crecimiento (635 seguidores en TikTok y 405 en Instagram), he logrado resultados impresionantes." data-en="Despite having a growing community (635 followers on TikTok and 405 on Instagram), I've achieved impressive results.">A pesar de tener una comunidad en crecimiento (635 seguidores en TikTok y 405 en Instagram), he logrado resultados impresionantes.</p>
+            <p data-es="En Instagram, mi video más exitoso alcanzó más de <span class='highlight'>2300 visualizaciones</span>, mientras que en TikTok, mi contenido ha superado <span class='highlight'>10,000 visualizaciones</span>." data-en="On Instagram, my most successful video reached over <span class='highlight'>2300 views</span>, while on TikTok, my content has exceeded <span class='highlight'>10,000 views</span>.">En Instagram, mi video más exitoso alcanzó más de <span class="highlight">2300 visualizaciones</span>, mientras que en TikTok, mi contenido ha superado <span class="highlight">10,000 visualizaciones</span>.</p>
+            <p data-es="Mi estilo dinámico y orientado a las tendencias, combinado con una presencia cercana, me posiciona de manera única para conectar auténticamente con las audiencias y generar resultados para las marcas de belleza." data-en="My dynamic and trend-oriented style, combined with an approachable presence, uniquely positions me to authentically connect with audiences and deliver results for beauty brands.">Mi estilo dinámico y orientado a las tendencias, combinado con una presencia cercana, me posiciona de manera única para conectar auténticamente con las audiencias y generar resultados para las marcas de belleza.</p>
+        </div>
+    </section>
+    
+    <!-- Contacto -->
+    <section class="section" id="contact">
+        <h2 class="section-title" data-es="Contáctame" data-en="Contact Me">Contáctame</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 data-es="Información de contacto" data-en="Contact Information">Información de contacto</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:anadmmakeup.pr@gmail.com">anadmmakeup.pr@gmail.com</a></p>
+                <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/anadmmakeup" target="_blank">@anadmmakeup</a></p>
+                <p><i class="fab fa-tiktok"></i> <a href="https://tiktok.com/@anadmmakeup1" target="_blank">@anadmmakeup1</a></p>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name" data-es="Nombre" data-en="Name">Nombre</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" data-es="Email" data-en="Email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" data-es="Mensaje" data-en="Message">Mensaje</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" data-es="Enviar Mensaje" data-en="Send Message">Enviar Mensaje</button>
+					<form action="https://formspree.io/f/tu-email@gmail.com" method="POST">
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="social-links">
+            <a href="https://instagram.com/anadmmakeup" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@anadmmakeup1" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="mailto:anadmmakeup.pr@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p class="copyright" data-es="© 2023 Ana De Moya. Todos los derechos reservados." data-en="© 2023 Ana De Moya. All rights reserved.">© 2023 Ana De Moya. Todos los derechos reservados.</p>
+    </footer>
+    
+    <script>
+        // Observador de intersección para animaciones
+        const sections = document.querySelectorAll('.section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Menú activo al desplazarse
+        const navLinks = document.querySelectorAll('.menu li a');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= (sectionTop - 300)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Smooth scrolling para todos los enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animación de números en estadísticas
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach(stat => {
+                const target = +stat.innerText.replace(/,/g, '');
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        clearInterval(timer);
+                        stat.innerText = target.toLocaleString();
+                    } else {
+                        stat.innerText = Math.floor(current).toLocaleString();
+                    }
+                }, 20);
+            });
+        }
+        
+        // Cambio de idioma
+        const esBtn = document.getElementById('es-btn');
+        const enBtn = document.getElementById('en-btn');
+        
+        function changeLanguage(lang) {
+            // Cambiar botones de idioma
+            if (lang === 'es') {
+                esBtn.classList.add('active');
+                enBtn.classList.remove('active');
+            } else {
+                enBtn.classList.add('active');
+                esBtn.classList.remove('active');
+            }
+            
+            // Cambiar todos los elementos con atributos de idioma
+            document.querySelectorAll('[data-es], [data-en]').forEach(element => {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    // No cambiar placeholders de formularios (opcional)
+                    return;
+                }
+                
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    if (element.hasAttribute('value')) {
+                        element.value = text;
+                    } else {
+                        element.innerHTML = text;
+                    }
+                }
+            });
+        }
+        
+        esBtn.addEventListener('click', () => changeLanguage('es'));
+        enBtn.addEventListener('click', () => changeLanguage('en'));
+        
+        // Observador para animar estadísticas cuando son visibles
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        // Efecto de carga inicial
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
