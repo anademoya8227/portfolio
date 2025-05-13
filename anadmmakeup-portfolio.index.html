@@ -62,10 +62,10 @@
             color: var(--white);
         }
         
-        /* Portada/Hero */
+        /* Portada/Hero - Modificado para foto personal con efecto hover */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
+            background: url('tu-foto-de-fondo.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -82,14 +82,28 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(227,31,113,0.1), rgba(255,0,255,0.1));
-            opacity: 0;
-            transition: opacity 1s ease;
-            pointer-events: none;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3));
+            transition: var(--transition);
         }
         
         .hero:hover::before {
-            opacity: 1;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2));
+        }
+        
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .hero:hover img {
+            filter: grayscale(0%);
         }
         
         .hero-content {
@@ -115,39 +129,6 @@
             font-weight: 300;
             max-width: 700px;
             padding: 0 20px;
-        }
-        
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 2rem;
-            animation: bounce 2s infinite;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .scroll-down:hover {
-            color: var(--fuchsia);
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
-            40% {transform: translateY(-20px) translateX(-50%);}
-            60% {transform: translateY(-10px) translateX(-50%);}
         }
         
         /* Menú */
@@ -863,6 +844,9 @@
     
     <!-- Portada -->
     <section class="hero" id="home">
+        <!-- Tu foto de fondo -->
+        <img src="tu-foto-de-fondo.jpg" alt="Ana De Moya">
+        
         <div class="hero-content">
             <h1 data-es="Ana De Moya" data-en="Ana De Moya">Ana De Moya</h1>
             <p data-es="Beauty Content Creator" data-en="Beauty Content Creator">Beauty Content Creator</p>
