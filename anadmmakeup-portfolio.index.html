@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana De Moya | Beauty Content Creator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">"stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --fuchsia: #FF00FF;
@@ -62,7 +62,7 @@
             color: var(--white);
         }
         
-        /* Portada/Hero - Versión con foto personal */
+        /* Portada/Hero con foto de fondo y efecto hover */
         .hero {
             height: 100vh;
             background: url('tu-foto-de-fondo.jpg') center/cover no-repeat;
@@ -74,30 +74,16 @@
             position: relative;
             overflow: hidden;
             filter: grayscale(100%);
-            transition: filter 0.7s ease;
+            transition: var(--transition);
         }
         
         .hero:hover {
             filter: grayscale(0%);
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
-            z-index: 1;
-        }
-        
         .hero-content {
             position: relative;
             z-index: 2;
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 0.3s;
         }
         
         .hero h1 {
@@ -105,9 +91,8 @@
             font-size: 4.5rem;
             color: var(--white);
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
             font-weight: 800;
-            line-height: 1.1;
         }
         
         .hero p {
@@ -115,9 +100,7 @@
             color: var(--soft-pink);
             margin-bottom: 3rem;
             font-weight: 300;
-            max-width: 700px;
-            padding: 0 20px;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
         }
         
         .scroll-down {
@@ -135,6 +118,12 @@
         
         .scroll-down:hover {
             color: var(--fuchsia);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+            40% {transform: translateY(-20px) translateX(-50%);}
+            60% {transform: translateY(-10px) translateX(-50%);}
         }
 
         /* Responsive para hero */
@@ -870,10 +859,10 @@
     </div>
     
     <!-- Portada -->
-     <section class="hero" id="home">
+      <section class="hero" id="home">
         <div class="hero-content">
-            <h1 data-es="Ana De Moya" data-en="Ana De Moya">Ana De Moya</h1>
-            <p data-es="Beauty Content Creator" data-en="Beauty Content Creator">Beauty Content Creator</p>
+            <h1>Ana De Moya</h1>
+            <p>Beauty Content Creator</p>
         </div>
         <a href="#menu" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
     </section>
