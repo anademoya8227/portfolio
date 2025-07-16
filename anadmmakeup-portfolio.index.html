@@ -64,58 +64,24 @@
         
          /* Portada/Hero */
         .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(227,31,113,0.1), rgba(255,0,255,0.1));
-            opacity: 0;
-            transition: opacity 1s ease;
-            pointer-events: none;
-        }
-        
-        .hero:hover::before {
-            opacity: 1;
-        }
-        
-        .hero-content {
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeInUp 1s ease forwards 0.3s;
-        }
-        
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            color: var(--white);
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            font-weight: 800;
-            line-height: 1.1;
-        }
-        
-        .hero p {
-            font-size: 1.8rem;
-            color: var(--soft-pink);
-            margin-bottom: 3rem;
-            font-weight: 300;
-            max-width: 700px;
-            padding: 0 20px;
-        }
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards 0.3s;
+}
         
         .scroll-down {
             position: absolute;
@@ -149,6 +115,30 @@
             40% {transform: translateY(-20px) translateX(-50%);}
             60% {transform: translateY(-10px) translateX(-50%);}
         }
+		/* Hero Image */
+.hero-image {
+    position: absolute;
+    width: auto;
+    height: 80%;
+    max-width: 90%;
+    object-fit: contain;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards 0.5s;
+}
+
+@media (max-width: 768px) {
+    .hero-image {
+        height: 60%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-image {
+        height: 50%;
+    }
+}
         /* Menú */
         .menu {
             position: fixed;
@@ -773,12 +763,13 @@
     
     <!-- Portada -->
       <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Ana De Moya</h1>
-            <p>Beauty Content Creator</p>
-        </div>
-        <a href="#menu" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
-    </section>
+    <img src="tu-foto.png" alt="Ana De Moya" class="hero-image">
+    <div class="hero-content">
+        <h1>Ana De Moya</h1>
+        <p>Beauty Content Creator</p>
+    </div>
+    <a href="#menu" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+</section>
     
     <!-- Menú -->
     <nav class="menu" id="menu">
