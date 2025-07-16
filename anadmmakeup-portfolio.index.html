@@ -458,58 +458,7 @@
             box-shadow: 0 15px 40px rgba(227, 31, 113, 0.3);
         }
         
-        /* Estadísticas */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            text-align: center;
-        }
-        
-        .stat-item {
-            background-color: var(--soft-pink);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: var(--transition);
-            transform: translateY(30px);
-            opacity: 0;
-        }
-        
-        .section.visible .stat-item {
-            animation: fadeInUpStats 0.6s ease forwards;
-        }
-        
-        .stat-item:nth-child(1) { animation-delay: 0.2s; }
-        .stat-item:nth-child(2) { animation-delay: 0.3s; }
-        .stat-item:nth-child(3) { animation-delay: 0.4s; }
-        .stat-item:nth-child(4) { animation-delay: 0.5s; }
-        
-        @keyframes fadeInUpStats {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px) !important;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-            background-color: var(--white);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--fuchsia);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            color: var(--dark-gray);
-            font-weight: 500;
-        }
-        
+               
         /* Marcas - Versión con círculos perfectos */
         .brands-grid {
             display: flex;
@@ -948,29 +897,7 @@
         </div>
     </section>
     
-    <!-- Estadísticas -->
-    <section class="section" id="stats">
-        <h2 class="section-title" data-es="Estadísticas" data-en="Statistics">Estadísticas</h2>
-     
-            <div class="stat-item">
-                <div class="stat-number">287</div>
-                <div class="stat-label" data-es="Promedio en Instagram" data-en="Instagram average">Promedio en Instagram</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">700</div>
-                <div class="stat-label" data-es="Máximo en TikTok" data-en="TikTok max">Máximo en TikTok</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">3.87</div>
-                <div class="stat-label" data-es="Tasa de engagement en Instagram (%)" data-en="Instagram engagement rate (%)">Tasa de engagement en Instagram (%)</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">9.93</div>
-                <div class="stat-label" data-es="Tasa de engagement en TikTok (%)" data-en="TikTok engagement rate (%)">Tasa de engagement en TikTok (%)</div>
-            </div>
-        </div>
-    </section>
-    
+       
     <!-- Marcas -->
     <section class="section" id="brands">
         <h2 class="section-title" data-es="Marcas con las que he trabajado" data-en="Brands I've worked with">Marcas con las que he trabajado</h2>
@@ -1040,7 +967,13 @@
             </div>	
 		<div class="brand-item">
                 <img src="fwee-logo.png" alt="Fwee">
-            </div>		
+           </div>		
+		<div class="brand-item">
+                <img src="moda-logo.png" alt="Moda Brush">
+            </div>	
+        <div class="brand-item">
+                <img src="unicoeye-logo.png" alt="Unicoeye">
+            </div>				
         </div>
     </section>
     
@@ -1147,27 +1080,7 @@
             });
         });
         
-        // Animación de números en estadísticas
-        function animateStats() {
-            const statNumbers = document.querySelectorAll('.stat-number');
-            
-            statNumbers.forEach(stat => {
-                const target = +stat.innerText.replace(/,/g, '');
-                const increment = target / 100;
-                let current = 0;
-                
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        clearInterval(timer);
-                        stat.innerText = target.toLocaleString();
-                    } else {
-                        stat.innerText = Math.floor(current).toLocaleString();
-                    }
-                }, 20);
-            });
-        }
-        
+               
         // Cambio de idioma
         const esBtn = document.getElementById('es-btn');
         const enBtn = document.getElementById('en-btn');
@@ -1203,21 +1116,7 @@
         esBtn.addEventListener('click', () => changeLanguage('es'));
         enBtn.addEventListener('click', () => changeLanguage('en'));
         
-        // Observador para animar estadísticas cuando son visibles
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateStats();
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        const statsSection = document.getElementById('stats');
-        if (statsSection) {
-            statsObserver.observe(statsSection);
-        }
-        
+                
         // Efecto de carga inicial
         document.addEventListener('DOMContentLoaded', () => {
             document.body.style.opacity = '1';
