@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana De Moya | Beauty Content Creator</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">"stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --fuchsia: #FF00FF;
@@ -62,40 +62,40 @@
             color: var(--white);
         }
         
-        /* Portada/Hero - NUEVA VERSIÓN */
+         /* Portada/Hero */
         .hero {
             height: 100vh;
-            position: relative;
-            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .hero-image {
+        .hero::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('retrato-portafolio.png') center/cover no-repeat;
-            filter: grayscale(100%);
-            transition: filter 0.8s ease;
-            z-index: -1;
+            background: linear-gradient(45deg, rgba(227,31,113,0.1), rgba(255,0,255,0.1));
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
         }
         
-        .hero:hover .hero-image {
-            filter: grayscale(0%);
+        .hero:hover::before {
+            opacity: 1;
         }
         
         .hero-content {
             transform: translateY(20px);
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.3s;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
         
         .hero h1 {
@@ -103,9 +103,9 @@
             font-size: 4.5rem;
             color: var(--white);
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
             font-weight: 800;
             line-height: 1.1;
-            text-shadow: 3px 3px 10px rgba(0,0,0,0.8);
         }
         
         .hero p {
@@ -115,7 +115,6 @@
             font-weight: 300;
             max-width: 700px;
             padding: 0 20px;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
         }
         
         .scroll-down {
@@ -128,7 +127,6 @@
             animation: bounce 2s infinite;
             cursor: pointer;
             transition: var(--transition);
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
         }
         
         .scroll-down:hover {
