@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana De Moya | Beauty Content Creator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <!-- MEJORA: Versión correcta y ÚNICA de Font Awesome (se eliminó la línea duplicada y rota) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
@@ -15,19 +14,19 @@
             --dark-gray: #2A2A2A;
             --black: #000000;
             --white: #FFFFFF;
-            /* MEJORA: Centralización de fuentes y sombras en variables CSS */
             --font-primary: 'Montserrat', sans-serif;
             --font-secondary: 'Playfair Display', serif;
             --box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            --box-shadow-hover: 0 15px 30px rgba(227, 31, 113, 0.2);
+            --box-shadow-hover: 0 20px 40px rgba(227, 31, 113, 0.3);
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            --gradient-pink: linear-gradient(135deg, #FF00FF, #E31F71);
+            --gradient-soft: linear-gradient(135deg, #FFB6C1, #FF00FF);
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            /* MEJORA: Uso de la variable para la fuente principal */
             font-family: var(--font-primary);
         }
         
@@ -39,7 +38,7 @@
             transition: background-color 0.5s ease;
         }
         
-        /* Language Toggle */
+        /* Language Toggle - MEJORA: Animación scale al hover */
         .language-toggle {
             position: fixed;
             top: 20px;
@@ -62,14 +61,21 @@
             cursor: pointer;
             font-weight: 500;
             transition: var(--transition);
+            transform: scale(1);
+        }
+        
+        .language-btn:hover {
+            transform: scale(1.05);
+            background-color: rgba(255, 0, 255, 0.2);
         }
         
         .language-btn.active {
-            background-color: var(--fuchsia);
+            background: var(--gradient-pink);
             color: var(--white);
+            transform: scale(1);
         }
         
-         /* Portada/Hero */
+        /* Portada/Hero - MEJORA: Overlay con patrón y botón CTA */
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tu-foto-de-fondo.jpg') center/cover no-repeat;
@@ -89,7 +95,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(227,31,113,0.1), rgba(255,0,255,0.1));
+            background: 
+                linear-gradient(45deg, rgba(227,31,113,0.1), rgba(255,0,255,0.1)),
+                repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 6px);
             opacity: 0;
             transition: opacity 1s ease;
             pointer-events: none;
@@ -103,10 +111,10 @@
             transform: translateY(20px);
             opacity: 0;
             animation: fadeInUp 1s ease forwards 0.3s;
+            z-index: 1;
         }
         
         .hero h1 {
-            /* MEJORA: Uso de la variable para la fuente secundaria */
             font-family: var(--font-secondary);
             font-size: 4.5rem;
             color: var(--white);
@@ -119,10 +127,36 @@
         .hero p {
             font-size: 1.8rem;
             color: var(--soft-pink);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             font-weight: 300;
             max-width: 700px;
             padding: 0 20px;
+            letter-spacing: 2px;
+        }
+        
+        /* MEJORA: Nuevo botón CTA en hero */
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 35px;
+            background: var(--gradient-pink);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            border: 2px solid transparent;
+            box-shadow: var(--box-shadow);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .hero-cta:hover {
+            background: transparent;
+            border-color: var(--fuchsia);
+            color: var(--fuchsia);
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
         }
         
         .scroll-down {
@@ -135,10 +169,12 @@
             animation: bounce 2s infinite;
             cursor: pointer;
             transition: var(--transition);
+            z-index: 1;
         }
         
         .scroll-down:hover {
             color: var(--fuchsia);
+            transform: translateX(-50%) scale(1.2);
         }
         
         @keyframes fadeInUp {
@@ -157,6 +193,7 @@
             40% {transform: translateY(-20px) translateX(-50%);}
             60% {transform: translateY(-10px) translateX(-50%);}
         }
+        
         /* Menú */
         .menu {
             position: fixed;
@@ -206,7 +243,7 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: var(--fuchsia);
+            background: var(--gradient-pink);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s ease;
@@ -239,7 +276,6 @@
         }
         
         .section-title {
-            /* MEJORA: Uso de la variable para la fuente secundaria */
             font-family: var(--font-secondary);
             font-size: 3rem;
             margin-bottom: 3rem;
@@ -253,19 +289,47 @@
             content: '';
             display: block;
             width: 80px;
-            height: 3px;
-            background-color: var(--fuchsia);
+            height: 4px;
+            background: var(--gradient-pink);
             margin: 1rem auto;
             transform: scaleX(0);
             transform-origin: center;
             transition: transform 0.6s ease 0.3s;
+            border-radius: 2px;
         }
         
         .section.visible .section-title:after {
             transform: scaleX(1);
         }
         
-        /* Videos de Maquillaje & Skincare */
+        /* MEJORA: Separadores decorativos entre secciones */
+        .section-divider {
+            text-align: center;
+            margin: 3rem auto;
+            color: var(--soft-pink);
+            font-size: 2rem;
+            opacity: 0.3;
+            max-width: 1200px;
+            position: relative;
+        }
+        
+        .section-divider i {
+            background-color: var(--white);
+            padding: 0 20px;
+        }
+        
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gradient-soft);
+            z-index: -1;
+        }
+        
+        /* Videos de Maquillaje & Skincare - MEJORA: Badges y overlay de play */
         .video-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -274,13 +338,36 @@
         
         .video-card {
             position: relative;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            /* MEJORA: Uso de variables para sombras */
             box-shadow: var(--box-shadow);
             transition: var(--transition);
             transform: translateY(20px);
             opacity: 0;
+            cursor: pointer;
+            background-color: var(--white);
+        }
+        
+        .video-card::after {
+            content: '\f144';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            color: var(--white);
+            font-size: 4rem;
+            opacity: 0;
+            transition: var(--transition);
+            text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .video-card:hover::after {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
         }
         
         .section.visible .video-card {
@@ -303,19 +390,20 @@
         
         .video-card:hover {
             transform: translateY(-10px) scale(1.02);
-            /* MEJORA: Uso de variables para sombras */
             box-shadow: var(--box-shadow-hover);
         }
         
-        .video-card img {
+        .video-card video {
             width: 100%;
-            height: 200px;
+            height: auto;
+            aspect-ratio: 9/16;
             object-fit: cover;
+            background-color: #000;
             transition: var(--transition);
         }
         
-        .video-card:hover img {
-            transform: scale(1.1);
+        .video-card:hover video {
+            transform: scale(1.05);
         }
         
         .video-info {
@@ -323,35 +411,29 @@
             background-color: var(--white);
         }
         
+        /* MEJORA: Badge para categorías */
         .video-info h3 {
-            color: var(--dark-gray);
-            margin-bottom: 0.5rem;
-            font-weight: 700;
+            display: inline-block;
+            background: var(--gradient-pink);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(227, 31, 113, 0.3);
         }
         
         .video-info p {
-            color: var(--hot-pink);
+            color: var(--dark-gray);
             font-weight: 500;
-        }
-
-        .vertical-video {
-            width: 100%;
-            height: auto;
-            max-height: 600px;
-            object-fit: cover;
-            background-color: #000;
-            display: block;
-        }
-
-        .video-card video {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 9/16;
-            object-fit: cover;
-            background-color: #000;
+            font-size: 1rem;
+            line-height: 1.4;
         }
         
-        /* Fotos de Maquillaje y Skincare */
+        /* Fotos de Maquillaje y Skincare - MEJORA: Títulos al hover */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -361,11 +443,12 @@
         .photo-item {
             position: relative;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: 12px;
             aspect-ratio: 1/1;
             transform: scale(0.95);
             opacity: 0;
             transition: var(--transition);
+            box-shadow: var(--box-shadow);
         }
         
         .section.visible .photo-item {
@@ -394,9 +477,10 @@
         }
         
         .photo-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
         
+        /* MEJORA: Overlay y título al hover */
         .photo-item::before {
             content: '';
             position: absolute;
@@ -404,7 +488,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(227, 31, 113, 0.3), transparent);
+            background: linear-gradient(to top, rgba(227, 31, 113, 0.4), transparent 60%);
             opacity: 0;
             transition: var(--transition);
             z-index: 1;
@@ -412,6 +496,27 @@
         
         .photo-item:hover::before {
             opacity: 1;
+        }
+        
+        .photo-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white);
+            padding: 30px 15px 15px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            z-index: 2;
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            backdrop-filter: blur(2px);
+        }
+        
+        .photo-item:hover .photo-title {
+            transform: translateY(0);
         }
         
         /* Sobre Mí */
@@ -438,8 +543,9 @@
         
         .about-text p {
             margin-bottom: 1.5rem;
-            line-height: 1.6;
+            line-height: 1.8;
             font-size: 1.1rem;
+            color: var(--dark-gray);
         }
         
         .about-image {
@@ -459,20 +565,19 @@
         
         .about-image img {
             max-width: 100%;
-            border-radius: 10px;
-            /* MEJORA: Uso de variables para sombras */
+            border-radius: 20px;
             box-shadow: var(--box-shadow);
             transition: var(--transition);
+            border: 3px solid var(--soft-pink);
         }
         
         .about-image:hover img {
             transform: scale(1.03);
-            /* MEJORA: Uso de variables para sombras */
             box-shadow: var(--box-shadow-hover);
+            border-color: var(--fuchsia);
         }
         
-               
-        /* Marcas - Versión con círculos perfectos */
+        /* Marcas - MEJORA: Gradiente sutil al hover */
         .brands-grid {
             display: flex;
             flex-wrap: wrap;
@@ -485,22 +590,36 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background-color: var(--white);
+            background: var(--white);
             display: flex;
             justify-content: center;
             align-items: center;
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            /* MEJORA: Uso de variables para sombras */
             box-shadow: var(--box-shadow);
             border: 1px solid rgba(0,0,0,0.05);
         }
         
+        .brand-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-soft);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
         .brand-item:hover {
             transform: scale(1.1);
-            /* MEJORA: Uso de variables para sombras */
             box-shadow: var(--box-shadow-hover);
+        }
+        
+        .brand-item:hover::before {
+            opacity: 0.1;
         }
         
         .brand-item img {
@@ -508,17 +627,18 @@
             height: 70%;
             object-fit: contain;
             filter: grayscale(100%);
-            opacity: 0.8;
+            opacity: 0.7;
             transition: var(--transition);
+            position: relative;
+            z-index: 1;
         }
         
         .brand-item:hover img {
             filter: grayscale(0%);
             opacity: 1;
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
-
-        /* Responsive para marcas */
+        
         @media (max-width: 768px) {
             .brand-item {
                 width: 100px;
@@ -538,12 +658,14 @@
         
         /* Por qué yo */
         .why-me {
-            background-color: var(--soft-pink);
-            padding: 4rem 2rem;
-            border-radius: 15px;
+            background: var(--gradient-soft);
+            padding: 4rem 3rem;
+            border-radius: 30px;
             transform: scale(0.95);
             opacity: 0;
             transition: var(--transition);
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(255,255,255,0.3);
         }
         
         .section.visible .why-me {
@@ -554,8 +676,10 @@
         
         .why-me p {
             margin-bottom: 1.5rem;
-            line-height: 1.6;
-            font-size: 1.1rem;
+            line-height: 1.8;
+            font-size: 1.2rem;
+            color: var(--dark-gray);
+            font-weight: 500;
         }
         
         .highlight {
@@ -563,24 +687,9 @@
             font-weight: 700;
             position: relative;
             display: inline-block;
-        }
-        
-        .highlight::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--fuchsia);
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-        
-        .why-me:hover .highlight::after {
-            transform: scaleX(1);
-            transform-origin: left;
+            background-color: rgba(255,255,255,0.3);
+            padding: 0 5px;
+            border-radius: 5px;
         }
         
         /* Contacto */
@@ -596,6 +705,10 @@
             transform: translateX(-30px);
             opacity: 0;
             transition: var(--transition);
+            background: var(--soft-pink);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
         }
         
         .section.visible .contact-info {
@@ -605,18 +718,25 @@
         }
         
         .contact-info h3 {
-            color: var(--hot-pink);
+            color: var(--dark-gray);
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
+            font-family: var(--font-secondary);
         }
         
         .contact-info p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             font-size: 1.1rem;
+        }
+        
+        .contact-info i {
+            color: var(--fuchsia);
+            font-size: 1.5rem;
+            width: 30px;
         }
         
         .contact-info a {
@@ -632,8 +752,8 @@
             bottom: -2px;
             left: 0;
             width: 100%;
-            height: 1px;
-            background-color: var(--dark-gray);
+            height: 2px;
+            background: var(--gradient-pink);
             transform: scaleX(0);
             transform-origin: right;
             transition: transform 0.3s ease;
@@ -646,31 +766,32 @@
         .contact-info a:hover::after {
             transform: scaleX(1);
             transform-origin: left;
-            background-color: var(--fuchsia);
         }
         
-        /* Estilos para el formulario de Google */
         .google-form-container {
             width: 100%;
-            border-radius: 8px;
+            border-radius: 20px;
             overflow: hidden;
-            /* MEJORA: Uso de variables para sombras */
             box-shadow: var(--box-shadow);
             transition: var(--transition);
         }
-
+        
+        .google-form-container:hover {
+            box-shadow: var(--box-shadow-hover);
+            transform: translateY(-5px);
+        }
+        
         .google-form-container iframe {
             border: none;
             min-height: 600px;
         }
-
-        /* Ajustes responsivos para el formulario */
+        
         @media (max-width: 768px) {
             .google-form-container iframe {
                 min-height: 500px;
             }
         }
-
+        
         @media (max-width: 480px) {
             .google-form-container iframe {
                 min-height: 400px;
@@ -682,31 +803,52 @@
             background-color: var(--dark-gray);
             color: var(--white);
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem;
             margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-pink);
         }
         
         .social-links {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             margin-bottom: 1.5rem;
         }
         
         .social-links a {
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 2rem;
             transition: var(--transition);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .social-links a:hover {
             color: var(--fuchsia);
-            transform: translateY(-3px);
+            transform: translateY(-5px) scale(1.1);
+            background: var(--white);
         }
         
         .copyright {
             font-size: 0.9rem;
             opacity: 0.8;
+            letter-spacing: 1px;
         }
         
         /* Responsive */
@@ -787,12 +929,13 @@
         <button class="language-btn" id="en-btn">EN</button>
     </div>
     
-    <!-- Portada -->
-    <!-- MEJORA: El scroll-down ahora lleva a la sección de videos, más intuitivo -->
+    <!-- Portada con mejoras estéticas -->
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Ana De Moya</h1>
             <p>Beauty Content Creator</p>
+            <!-- MEJORA: Nuevo botón CTA -->
+            <a href="#videos" class="hero-cta" data-es="Ver mi trabajo" data-en="View my work">Ver mi trabajo</a>
         </div>
         <a href="#videos" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
     </section>
@@ -810,12 +953,13 @@
         </ul>
     </nav>
     
+    <!-- Sección de Videos con mejoras -->
     <section class="section" id="videos">
         <h2 class="section-title" data-es="Videos de Maquillaje & Skincare" data-en="Makeup & Skincare Videos">Videos de Maquillaje & Skincare</h2>
         <div class="video-grid">
-            <!-- MEJORA: Añadido preload="none" a todos los videos para mejorar rendimiento -->
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <!-- MEJORA: Añadido poster para miniatura personalizada -->
+                <video controls playsinline preload="none" poster="miniatura-labios.jpg" class="vertical-video">
                     <source src="maquillaje-labios.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -825,7 +969,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-grwm.jpg" class="vertical-video">
                     <source src="arreglate-conmigo.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -835,7 +979,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-revolution.jpg" class="vertical-video">
                     <source src="lapiz-blanco-revolution.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -845,7 +989,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-dodolashes.jpg" class="vertical-video">
                     <source src="pestanas-dodolashes.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -855,7 +999,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-bubble.jpg" class="vertical-video">
                     <source src="bubble-unboxing.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -865,7 +1009,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-purito.jpg" class="vertical-video">
                     <source src="crema-pantenol-purito.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -875,7 +1019,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-thayers.jpg" class="vertical-video">
                     <source src="thayers-video.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -885,7 +1029,7 @@
                 </div>
             </div>
             <div class="video-card">
-                <video controls playsinline preload="none" class="vertical-video">
+                <video controls playsinline preload="none" poster="miniatura-douyin.jpg" class="vertical-video">
                     <source src="story-video.mp4" type="video/mp4">
                     Tu navegador no soporta el elemento de video.
                 </video>
@@ -897,28 +1041,42 @@
         </div>
     </section>
     
-    <!-- Fotos de Maquillaje -->
+    <!-- Separador decorativo -->
+    <div class="section-divider">
+        <i class="fas fa-makeup-brush"></i>
+    </div>
+    
+    <!-- Sección de Fotos con mejoras -->
     <section class="section" id="fotos">
         <h2 class="section-title" data-es="Fotos de Maquillaje y Skincare" data-en="Makeup & Skincare Photos">Fotos de Maquillaje y Skincare</h2>
         <div class="photo-grid">
-            <!-- MEJORA: Añadidos atributos alt con soporte para idiomas -->
             <div class="photo-item">
                 <img src="makeup-photo1.jpg" alt="" data-es="Lip Gloss Harley Quinn de Essence" data-en="Essence Harley Quinn Lip Gloss">
+                <div class="photo-title" data-es="Lip Gloss Harley Quinn" data-en="Harley Quinn Lip Gloss">Lip Gloss Harley Quinn</div>
             </div>
             <div class="photo-item">
                 <img src="makeup-photo2.jpg" alt="" data-es="Lip Gloss Harley Quinn de Essence 2" data-en="Essence Harley Quinn Lip Gloss 2">
+                <div class="photo-title" data-es="Lip Gloss Harley Quinn 2" data-en="Harley Quinn Lip Gloss 2">Lip Gloss Harley Quinn 2</div>
             </div>
             <div class="photo-item">
                 <img src="makeup-photo3.jpg" alt="" data-es="Lip Tint de Ushas" data-en="Ushas Lip Tint">
+                <div class="photo-title" data-es="Lip Tint Ushas" data-en="Ushas Lip Tint">Lip Tint Ushas</div>
             </div>
             <div class="photo-item">
                 <img src="makeup-photo4.jpg" alt="" data-es="Serum de Pacífica" data-en="Pacifica Serum">
+                <div class="photo-title" data-es="Serum Pacifica" data-en="Pacifica Serum">Serum Pacifica</div>
             </div>
             <div class="photo-item">
                 <img src="skincare-photo1.jpg" alt="" data-es="Pads de Bright Jungle" data-en="Bright Jungle Pads">
+                <div class="photo-title" data-es="Bright Jungle Pads" data-en="Bright Jungle Pads">Bright Jungle Pads</div>
             </div>
         </div>
     </section>
+    
+    <!-- Separador decorativo -->
+    <div class="section-divider">
+        <i class="fas fa-spa"></i>
+    </div>
     
     <!-- Sobre Mí -->
     <section class="section" id="about">
@@ -930,17 +1088,20 @@
                 <p data-es="Estoy altamente comprometida con la creación de videos que cautiven nuevas audiencias, impulsando tanto la conversión como el posicionamiento de marca." data-en="I'm highly committed to creating videos that captivate new audiences, driving both conversion and brand positioning.">Estoy altamente comprometida con la creación de videos que cautiven nuevas audiencias, impulsando tanto la conversión como el posicionamiento de marca.</p>
             </div>
             <div class="about-image">
-                <!-- MEJORA: Atributo alt con soporte para idiomas -->
                 <img src="ana-profile.jpg" alt="" data-es="Foto de Ana De Moya" data-en="Photo of Ana De Moya">
             </div>
         </div>
     </section>
     
-    <!-- Marcas -->
+    <!-- Separador decorativo -->
+    <div class="section-divider">
+        <i class="fas fa-star"></i>
+    </div>
+    
+    <!-- Marcas con mejoras -->
     <section class="section" id="brands">
         <h2 class="section-title" data-es="Marcas con las que he trabajado" data-en="Brands I've worked with">Marcas con las que he trabajado</h2>
         <div class="brands-grid">
-            <!-- MEJORA: Añadidos atributos alt a los logos -->
             <div class="brand-item">
                 <img src="oulac-logo.png" alt="Oulac">
             </div>
@@ -1049,14 +1210,24 @@
         </div>
     </section>
     
-    <!-- Por qué yo -->
+    <!-- Separador decorativo -->
+    <div class="section-divider">
+        <i class="fas fa-heart"></i>
+    </div>
+    
+    <!-- Por qué yo con mejoras -->
     <section class="section" id="why">
         <h2 class="section-title" data-es="¿Por qué yo?" data-en="Why Me?">¿Por qué yo?</h2>
         <div class="why-me">
-            <p data-es="A pesar de tener una comunidad en crecimiento (5063 seguidores en TikTok y 793 en Instagram), he logrado resultados impresionantes." data-en="Despite having a growing community (5063 followers on TikTok and 793 on Instagram), I've achieved impressive results.">A pesar de tener una comunidad en crecimiento (5063 seguidores en TikTok y 793 en Instagram), he logrado resultados impresionantes.</p>
+            <p data-es="A pesar de tener una comunidad en crecimiento (<span class='highlight'>5063 seguidores en TikTok y 793 en Instagram</span>), he logrado resultados impresionantes." data-en="Despite having a growing community (<span class='highlight'>5063 followers on TikTok and 793 on Instagram</span>), I've achieved impressive results.">A pesar de tener una comunidad en crecimiento (<span class="highlight">5063 seguidores en TikTok y 793 en Instagram</span>), he logrado resultados impresionantes.</p>
             <p data-es="Mi estilo dinámico y orientado a las tendencias, combinado con una presencia cercana, me posiciona de manera única para conectar auténticamente con las audiencias y generar resultados para las marcas de belleza." data-en="My dynamic and trend-oriented style, combined with an approachable presence, uniquely positions me to authentically connect with audiences and deliver results for beauty brands.">Mi estilo dinámico y orientado a las tendencias, combinado con una presencia cercana, me posiciona de manera única para conectar auténticamente con las audiencias y generar resultados para las marcas de belleza.</p>
         </div>
     </section>
+    
+    <!-- Separador decorativo -->
+    <div class="section-divider">
+        <i class="fas fa-envelope"></i>
+    </div>
     
     <!-- Contacto -->
     <section class="section" id="contact">
@@ -1150,12 +1321,12 @@
             });
         });
         
-        // MEJORA: Versión única, optimizada y robusta del cambio de idioma
+        // Cambio de idioma mejorado con soporte para títulos de fotos
         const esBtn = document.getElementById('es-btn');
         const enBtn = document.getElementById('en-btn');
         
         function changeLanguage(lang) {
-            // 1. Actualizar botones de idioma
+            // Actualizar botones de idioma
             if (lang === 'es') {
                 esBtn.classList.add('active');
                 enBtn.classList.remove('active');
@@ -1164,18 +1335,18 @@
                 esBtn.classList.remove('active');
             }
             
-            // 2. Cambiar formularios
+            // Cambiar formularios
             document.getElementById('es-form').style.display = lang === 'es' ? 'block' : 'none';
             document.getElementById('en-form').style.display = lang === 'en' ? 'block' : 'none';
             
-            // 3. Cambiar textos (excluyendo inputs y elementos con valor)
+            // Cambiar textos de todos los elementos con data-es y data-en
             document.querySelectorAll('[data-es], [data-en]').forEach(element => {
-                // Si es un input o tiene un atributo 'value', lo ignoramos
-                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.hasAttribute('value')) {
+                // Ignorar inputs y textareas
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                     return;
                 }
                 
-                // Para imágenes, cambiamos el atributo alt
+                // Para imágenes, cambiar el atributo alt
                 if (element.tagName === 'IMG') {
                     const altText = element.getAttribute(`data-${lang}`);
                     if (altText) {
@@ -1184,21 +1355,20 @@
                     return;
                 }
                 
-                // Para el resto de elementos, cambiamos el texto
+                // Para el resto de elementos, cambiar el texto
                 const text = element.getAttribute(`data-${lang}`);
                 if (text) {
-                    element.textContent = text; // textContent es más seguro que innerHTML
+                    // Usar innerHTML para elementos que pueden contener HTML (como el span .highlight)
+                    element.innerHTML = text;
                 }
             });
         }
         
-        // Event listeners para botones de idioma
         esBtn.addEventListener('click', () => changeLanguage('es'));
         enBtn.addEventListener('click', () => changeLanguage('en'));
         
-        // Establecer idioma inicial al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
-            changeLanguage('es'); // Español como idioma por defecto
+            changeLanguage('es');
             document.body.style.opacity = '1';
         });
     </script>
