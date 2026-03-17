@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ana De Moya | Beauty Content Creator</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">"stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- MEJORA: Versión correcta y ÚNICA de Font Awesome (se eliminó la línea duplicada y rota) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --fuchsia: #FF00FF;
@@ -14,6 +15,11 @@
             --dark-gray: #2A2A2A;
             --black: #000000;
             --white: #FFFFFF;
+            /* MEJORA: Centralización de fuentes y sombras en variables CSS */
+            --font-primary: 'Montserrat', sans-serif;
+            --font-secondary: 'Playfair Display', serif;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --box-shadow-hover: 0 15px 30px rgba(227, 31, 113, 0.2);
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
         
@@ -21,7 +27,8 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+            /* MEJORA: Uso de la variable para la fuente principal */
+            font-family: var(--font-primary);
         }
         
         body {
@@ -43,7 +50,7 @@
             border-radius: 30px;
             padding: 5px;
             backdrop-filter: blur(5px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: var(--box-shadow);
         }
         
         .language-btn {
@@ -99,7 +106,8 @@
         }
         
         .hero h1 {
-            font-family: 'Playfair Display', serif;
+            /* MEJORA: Uso de la variable para la fuente secundaria */
+            font-family: var(--font-secondary);
             font-size: 4.5rem;
             color: var(--white);
             margin-bottom: 1rem;
@@ -231,7 +239,8 @@
         }
         
         .section-title {
-            font-family: 'Playfair Display', serif;
+            /* MEJORA: Uso de la variable para la fuente secundaria */
+            font-family: var(--font-secondary);
             font-size: 3rem;
             margin-bottom: 3rem;
             color: var(--hot-pink);
@@ -267,7 +276,8 @@
             position: relative;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow);
             transition: var(--transition);
             transform: translateY(20px);
             opacity: 0;
@@ -293,7 +303,8 @@
         
         .video-card:hover {
             transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(227, 31, 113, 0.2);
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow-hover);
         }
         
         .video-card img {
@@ -323,22 +334,22 @@
             font-weight: 500;
         }
 
-	.vertical-video {
-    width: 100%;
-    height: auto;
-    max-height: 600px; /* Ajusta según necesites */
-    object-fit: cover;
-    background-color: #000;
-    display: block;
-}
+        .vertical-video {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            background-color: #000;
+            display: block;
+        }
 
-.video-card video {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 9/16; /* Relación de aspecto vertical (9:16) */
-    object-fit: cover;
-    background-color: #000;
-}
+        .video-card video {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 9/16;
+            object-fit: cover;
+            background-color: #000;
+        }
         
         /* Fotos de Maquillaje y Skincare */
         .photo-grid {
@@ -449,13 +460,15 @@
         .about-image img {
             max-width: 100%;
             border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow);
             transition: var(--transition);
         }
         
         .about-image:hover img {
             transform: scale(1.03);
-            box-shadow: 0 15px 40px rgba(227, 31, 113, 0.3);
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow-hover);
         }
         
                
@@ -479,13 +492,15 @@
             transition: var(--transition);
             position: relative;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow);
             border: 1px solid rgba(0,0,0,0.05);
         }
         
         .brand-item:hover {
             transform: scale(1.1);
-            box-shadow: 0 5px 20px rgba(227, 31, 113, 0.2);
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow-hover);
         }
         
         .brand-item img {
@@ -635,31 +650,32 @@
         }
         
         /* Estilos para el formulario de Google */
-.google-form-container {
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: var(--transition);
-}
+        .google-form-container {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            /* MEJORA: Uso de variables para sombras */
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
 
-.google-form-container iframe {
-    border: none;
-    min-height: 600px;
-}
+        .google-form-container iframe {
+            border: none;
+            min-height: 600px;
+        }
 
-/* Ajustes responsivos para el formulario */
-@media (max-width: 768px) {
-    .google-form-container iframe {
-        min-height: 500px;
-    }
-}
+        /* Ajustes responsivos para el formulario */
+        @media (max-width: 768px) {
+            .google-form-container iframe {
+                min-height: 500px;
+            }
+        }
 
-@media (max-width: 480px) {
-    .google-form-container iframe {
-        min-height: 400px;
-    }
-}
+        @media (max-width: 480px) {
+            .google-form-container iframe {
+                min-height: 400px;
+            }
+        }
         
         /* Footer */
         footer {
@@ -772,12 +788,13 @@
     </div>
     
     <!-- Portada -->
-      <section class="hero" id="home">
+    <!-- MEJORA: El scroll-down ahora lleva a la sección de videos, más intuitivo -->
+    <section class="hero" id="home">
         <div class="hero-content">
             <h1>Ana De Moya</h1>
             <p>Beauty Content Creator</p>
         </div>
-        <a href="#menu" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
+        <a href="#videos" class="scroll-down"><i class="fas fa-chevron-down"></i></a>
     </section>
     
     <!-- Menú -->
@@ -793,110 +810,112 @@
         </ul>
     </nav>
     
-   <section class="section" id="videos">
-    <h2 class="section-title" data-es="Videos de Maquillaje & Skincare" data-en="Makeup & Skincare Videos">Videos de Maquillaje & Skincare</h2>
-    <div class="video-grid">
-        <div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="maquillaje-labios.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="TUTORIAL" data-en="TUTORIAL">TUTORIAL</h3>
-                <p data-es="Maquillaje de labios" data-en="Lip Combo">Maquillaje de labios</p>
+    <section class="section" id="videos">
+        <h2 class="section-title" data-es="Videos de Maquillaje & Skincare" data-en="Makeup & Skincare Videos">Videos de Maquillaje & Skincare</h2>
+        <div class="video-grid">
+            <!-- MEJORA: Añadido preload="none" a todos los videos para mejorar rendimiento -->
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="maquillaje-labios.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="TUTORIAL" data-en="TUTORIAL">TUTORIAL</h3>
+                    <p data-es="Maquillaje de labios" data-en="Lip Combo">Maquillaje de labios</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="arreglate-conmigo.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="GRWM" data-en="GRWM">GRWM</h3>
+                    <p data-es="Maquillaje social" data-en="Social Makeup">Maquillaje social</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="lapiz-blanco-revolution.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="PROBLEMA/SOLUCION" data-en="PROBLEM/SOLUTION">PROBLEMA/SOLUCION</h3>
+                    <p data-es="3 formas de usar tu lapiz blanco de Revolution" data-en="3 ways of using your Revolution white liner">3 formas de usar tu lapiz blanco de Revolution</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="pestanas-dodolashes.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="RESEÑA" data-en="REVIEW">RESEÑA</h3>
+                    <p data-es="Pestañas Dodolashes" data-en="Dodolashes">Pestañas Dodolashes</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="bubble-unboxing.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="UNBOXING" data-en="UNBOXING">UNBOXING</h3>
+                    <p data-es="Gel Limpiador Bubble" data-en="Bubble Gel Cleanser">Gel Limpiador Bubble</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="crema-pantenol-purito.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="ANTES & DESPUES" data-en="BEFORE & AFTER">ANTES & DESPUES</h3>
+                    <p data-es="Crema de Pantenol Purito" data-en="Purito Mighty Panthenol Cream">Crema de Pantenol Purito</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="thayers-video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="VIDEO VENTA" data-en="SELLING VIDEO">VIDEO VENTA</h3>
+                    <p data-es="Toner Thayers" data-en="Thayers Oil Balancing Jelly Toner">Toner Thayers</p>
+                </div>
+            </div>
+            <div class="video-card">
+                <video controls playsinline preload="none" class="vertical-video">
+                    <source src="story-video.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+                <div class="video-info">
+                    <h3 data-es="MAKING OF" data-en="MAKING OF">MAKING OF</h3>
+                    <p data-es="Making of Maquillaje Douyin" data-en="Douyin Makeup">Making of Maquillaje Douyin</p>
+                </div>
             </div>
         </div>
-        <div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="arreglate-conmigo.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="GRWM" data-en="GRWM">GRWM</h3>
-                <p data-es="Maquillaje social" data-en="Social Makeup">Maquillaje social</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="lapiz-blanco-revolution.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="PROBLEMA/SOLUCION" data-en="PROBLEM/SOLUTION">PROBLEMA/SOLUCION</h3>
-                <p data-es="3 formas de usar tu lapiz blanco de Revolution" data-en="3 ways of using your Revolution white liner">3 formas de usar tu lapiz blanco de Revolution</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="pestanas-dodolashes.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="RESEÑA" data-en="REVIEW">RESEÑA</h3>
-                <p data-es="Pestañas Dodolashes" data-en="Dodolashes">Pestañas Dodolashes</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="bubble-unboxing.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="UNBOXING" data-en="UNBOXING">UNBOXING</h3>
-                <p data-es="Gel Limpiador Bubble" data-en="Bubble Gel Cleanser">Gel Limpiador Bubble</p>
-            </div>
-        </div>
-        <div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="crema-pantenol-purito.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="ANTES & DESPUES" data-en="BEFORE & AFTER">ANTES & DESPUES</h3>
-                <p data-es="Crema de Pantenol Purito" data-en="Purito Mighty Panthenol Cream">Crema de Pantenol Purito</p>
-            </div>
-        </div>
-		<div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="thayers-video.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="VIDEO VENTA" data-en="SELLING VIDEO">VIDEO VENTA</h3>
-                <p data-es="Toner Thayers" data-en="Thayers Oil Balancing Jelly Toner">Toner Thayers</p>
-            </div>
-        </div>
-		<div class="video-card">
-            <video controls playsinline class="vertical-video">
-                <source src="story-video.mp4" type="video/mp4">
-                Tu navegador no soporta el elemento de video.
-            </video>
-            <div class="video-info">
-                <h3 data-es="MAKING OF" data-en="MAKING OF">MAKING OF</h3>
-                <p data-es="Making of Maquillaje Douyin" data-en="Douyin Makeup">Making of Maquillaje Douyin</p>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
     
     <!-- Fotos de Maquillaje -->
     <section class="section" id="fotos">
         <h2 class="section-title" data-es="Fotos de Maquillaje y Skincare" data-en="Makeup & Skincare Photos">Fotos de Maquillaje y Skincare</h2>
         <div class="photo-grid">
+            <!-- MEJORA: Añadidos atributos alt con soporte para idiomas -->
             <div class="photo-item">
-                <img src="makeup-photo1.jpg" data-es="Lip Gloss Harley Quinn de Essence" data-en="Essence Harley Quinn Lip Gloss">
+                <img src="makeup-photo1.jpg" alt="" data-es="Lip Gloss Harley Quinn de Essence" data-en="Essence Harley Quinn Lip Gloss">
             </div>
             <div class="photo-item">
-                <img src="makeup-photo2.jpg" data-es="Lip Gloss Harley Quinn de Essence 2" data-en="Essence Harley Quinn Lip Gloss 2">
+                <img src="makeup-photo2.jpg" alt="" data-es="Lip Gloss Harley Quinn de Essence 2" data-en="Essence Harley Quinn Lip Gloss 2">
             </div>
             <div class="photo-item">
-                <img src="makeup-photo3.jpg" data-es="Lip Tint de Ushas" data-en="Ushas Lip Tint">
+                <img src="makeup-photo3.jpg" alt="" data-es="Lip Tint de Ushas" data-en="Ushas Lip Tint">
             </div>
             <div class="photo-item">
-                <img src="makeup-photo4.jpg" data-es="Serum de Pacífica" data-en="Pacifica Serum">
+                <img src="makeup-photo4.jpg" alt="" data-es="Serum de Pacífica" data-en="Pacifica Serum">
             </div>
             <div class="photo-item">
-                <img src="skincare-photo1.jpg" data-es="Pads de Bright Jungle" data-en="Bright Jungle Pads">
+                <img src="skincare-photo1.jpg" alt="" data-es="Pads de Bright Jungle" data-en="Bright Jungle Pads">
             </div>
         </div>
     </section>
@@ -911,16 +930,17 @@
                 <p data-es="Estoy altamente comprometida con la creación de videos que cautiven nuevas audiencias, impulsando tanto la conversión como el posicionamiento de marca." data-en="I'm highly committed to creating videos that captivate new audiences, driving both conversion and brand positioning.">Estoy altamente comprometida con la creación de videos que cautiven nuevas audiencias, impulsando tanto la conversión como el posicionamiento de marca.</p>
             </div>
             <div class="about-image">
-                <img src="ana-profile.jpg" alt="Ana De Moya">
+                <!-- MEJORA: Atributo alt con soporte para idiomas -->
+                <img src="ana-profile.jpg" alt="" data-es="Foto de Ana De Moya" data-en="Photo of Ana De Moya">
             </div>
         </div>
     </section>
     
-       
     <!-- Marcas -->
     <section class="section" id="brands">
         <h2 class="section-title" data-es="Marcas con las que he trabajado" data-en="Brands I've worked with">Marcas con las que he trabajado</h2>
         <div class="brands-grid">
+            <!-- MEJORA: Añadidos atributos alt a los logos -->
             <div class="brand-item">
                 <img src="oulac-logo.png" alt="Oulac">
             </div>
@@ -959,73 +979,73 @@
             </div>
             <div class="brand-item">
                 <img src="frankly-logo.png" alt="Frankly">
-	    </div>	    
-	    <div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="coxir-logo.png" alt="Coxir">
-            </div>	    
-	    <div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="paminify-logo.png" alt="Paminify">
             </div>
-	    <div class="brand-item">
+            <div class="brand-item">
                 <img src="picky-logo.png" alt="Picky">
             </div>
-	    <div class="brand-item">
+            <div class="brand-item">
                 <img src="thayers-logo.png" alt="Thayers">
             </div>
-        <div class="brand-item">
+            <div class="brand-item">
                 <img src="meicoly-logo.png" alt="Meicoly">
-            </div>	
-		<div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="skinfood-logo.png" alt="Skinfood">
-            </div>	
-		<div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="fwee-logo.png" alt="Fwee">
-           </div>		
-		<div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="moda-logo.png" alt="Moda Brush">
-            </div>	
-        <div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="unicoeye-logo.png" alt="Unicoeye">
             </div>
-        <div class="brand-item">
+            <div class="brand-item">
                 <img src="Game Beauty-logo.png" alt="Game Beauty">
             </div>
-		<div class="brand-item">
+            <div class="brand-item">
                 <img src="Gaqqi-logo.png" alt="Gaqqi Lashes">
             </div>
-		<div class="brand-item">
+            <div class="brand-item">
                 <img src="Missha-logo.png" alt="Missha">
             </div>
-        <div class="brand-item">
+            <div class="brand-item">
                 <img src="Moira-logo.png" alt="Moira">
             </div>
-        <div class="brand-item">
+            <div class="brand-item">
                 <img src="unibling-logo.png" alt="Unibling">
             </div>
-        <div class="brand-item">
+            <div class="brand-item">
                 <img src="unleashia-logo.png" alt="Unleashia">
-            </div>	
-		<div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="maybelline-logo.png" alt="Maybelline">
             </div>
-		<div class="brand-item">
+            <div class="brand-item">
                 <img src="morphe-logo.png" alt="Morphe">
             </div>
-		<div class="brand-item">
+            <div class="brand-item">
                 <img src="poshmellow-logo.png" alt="MyPoshmellow">
             </div>
-		<div class="brand-item">
+            <div class="brand-item">
                 <img src="round-lab-logo.png" alt="Round Lab">
             </div>
-		<div class="brand-item">
+            <div class="brand-item">
                 <img src="kiss-beauty-logo.png" alt="Kiss Beauty Venezuela">
-            </div>		
-		<div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="juvias-place-logo.png" alt="Juvia's Place">
-            </div>		
-		<div class="brand-item">
+            </div>
+            <div class="brand-item">
                 <img src="garnier-logo.png" alt="Garnier">
-            </div>			
+            </div>
         </div>
     </section>
     
@@ -1039,34 +1059,31 @@
     </section>
     
     <!-- Contacto -->
-<section class="section" id="contact">
-    <h2 class="section-title" data-es="Contáctame" data-en="Contact Me">Contáctame</h2>
-    <div class="contact-container">
-        <div class="contact-info">
-            <h3 data-es="Información de contacto" data-en="Contact Information">Información de contacto</h3>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:anadmmakeup.pr@gmail.com">anadmmakeup.pr@gmail.com</a></p>
-            <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/anadmmakeup" target="_blank">@anadmmakeup</a></p>
-            <p><i class="fab fa-tiktok"></i> <a href="https://tiktok.com/@anadmmakeup1" target="_blank">@anadmmakeup1</a></p>
-        </div>
-        <div class="contact-form">
-            <!-- Formulario en español (inicialmente visible) -->
-            <div id="es-form" class="google-form-container">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUks4Uxu9Oite8qwepYVun-lNaKSOzIm_23VDJB13p6MxJLQ/viewform?usp=header" 
-                        width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">
-                    Cargando…
-                </iframe>
+    <section class="section" id="contact">
+        <h2 class="section-title" data-es="Contáctame" data-en="Contact Me">Contáctame</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3 data-es="Información de contacto" data-en="Contact Information">Información de contacto</h3>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:anadmmakeup.pr@gmail.com">anadmmakeup.pr@gmail.com</a></p>
+                <p><i class="fab fa-instagram"></i> <a href="https://instagram.com/anadmmakeup" target="_blank">@anadmmakeup</a></p>
+                <p><i class="fab fa-tiktok"></i> <a href="https://tiktok.com/@anadmmakeup1" target="_blank">@anadmmakeup1</a></p>
             </div>
-            
-            <!-- Formulario en inglés (inicialmente oculto) -->
-            <div id="en-form" class="google-form-container" style="display:none;">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfSkQ52jFTN57nT7loa2rqP3gs5K1qwvE9G3ouaLyrvgS9etw/viewform?usp=header" 
-                        width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">
-                    Loading…
-                </iframe>
+            <div class="contact-form">
+                <div id="es-form" class="google-form-container">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfUks4Uxu9Oite8qwepYVun-lNaKSOzIm_23VDJB13p6MxJLQ/viewform?usp=header" 
+                            width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">
+                        Cargando…
+                    </iframe>
+                </div>
+                <div id="en-form" class="google-form-container" style="display:none;">
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfSkQ52jFTN57nT7loa2rqP3gs5K1qwvE9G3ouaLyrvgS9etw/viewform?usp=header" 
+                            width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">
+                        Loading…
+                    </iframe>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
     
     <footer>
         <div class="social-links">
@@ -1124,100 +1141,66 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
         
-               
-       // Cambio de idioma
-const esBtn = document.getElementById('es-btn');
-const enBtn = document.getElementById('en-btn');
-
-function changeLanguage(lang) {
-    // Cambiar botones de idioma
-    if (lang === 'es') {
-        esBtn.classList.add('active');
-        enBtn.classList.remove('active');
-        // Mostrar formulario en español, ocultar inglés
-        document.getElementById('es-form').style.display = 'block';
-        document.getElementById('en-form').style.display = 'none';
-    } else {
-        enBtn.classList.add('active');
-        esBtn.classList.remove('active');
-        // Mostrar formulario en inglés, ocultar español
-        document.getElementById('en-form').style.display = 'block';
-        document.getElementById('es-form').style.display = 'none';
-    }
-    
-    // Cambiar todos los elementos con atributos de idioma
-    document.querySelectorAll('[data-es], [data-en]').forEach(element => {
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            return;
+        // MEJORA: Versión única, optimizada y robusta del cambio de idioma
+        const esBtn = document.getElementById('es-btn');
+        const enBtn = document.getElementById('en-btn');
+        
+        function changeLanguage(lang) {
+            // 1. Actualizar botones de idioma
+            if (lang === 'es') {
+                esBtn.classList.add('active');
+                enBtn.classList.remove('active');
+            } else {
+                enBtn.classList.add('active');
+                esBtn.classList.remove('active');
+            }
+            
+            // 2. Cambiar formularios
+            document.getElementById('es-form').style.display = lang === 'es' ? 'block' : 'none';
+            document.getElementById('en-form').style.display = lang === 'en' ? 'block' : 'none';
+            
+            // 3. Cambiar textos (excluyendo inputs y elementos con valor)
+            document.querySelectorAll('[data-es], [data-en]').forEach(element => {
+                // Si es un input o tiene un atributo 'value', lo ignoramos
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA' || element.hasAttribute('value')) {
+                    return;
+                }
+                
+                // Para imágenes, cambiamos el atributo alt
+                if (element.tagName === 'IMG') {
+                    const altText = element.getAttribute(`data-${lang}`);
+                    if (altText) {
+                        element.alt = altText;
+                    }
+                    return;
+                }
+                
+                // Para el resto de elementos, cambiamos el texto
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.textContent = text; // textContent es más seguro que innerHTML
+                }
+            });
         }
         
-        const text = element.getAttribute(`data-${lang}`);
-        if (text) {
-            if (element.hasAttribute('value')) {
-                element.value = text;
-            } else {
-                element.textContent = text; // Usar textContent en lugar de innerHTML
-            }
-        }
-    });
-}
-
-// Event listeners para botones de idioma
-esBtn.addEventListener('click', () => changeLanguage('es'));
-enBtn.addEventListener('click', () => changeLanguage('en'));
-
-// Establecer idioma inicial al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-    changeLanguage('es'); // Español como idioma por defecto
-    document.body.style.opacity = '1';
-});
-
-        // Efecto de carga inicial
+        // Event listeners para botones de idioma
+        esBtn.addEventListener('click', () => changeLanguage('es'));
+        enBtn.addEventListener('click', () => changeLanguage('en'));
+        
+        // Establecer idioma inicial al cargar la página
         document.addEventListener('DOMContentLoaded', () => {
+            changeLanguage('es'); // Español como idioma por defecto
             document.body.style.opacity = '1';
         });
-		// Actualizar la función changeLanguage para manejar los formularios
-function changeLanguage(lang) {
-    // Cambiar botones de idioma
-    if (lang === 'es') {
-        esBtn.classList.add('active');
-        enBtn.classList.remove('active');
-        document.getElementById('es-form').style.display = 'block';
-        document.getElementById('en-form').style.display = 'none';
-    } else {
-        enBtn.classList.add('active');
-        esBtn.classList.remove('active');
-        document.getElementById('en-form').style.display = 'block';
-        document.getElementById('es-form').style.display = 'none';
-    }
-    
-    // Cambiar todos los elementos con atributos de idioma
-    document.querySelectorAll('[data-es], [data-en]').forEach(element => {
-        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-            return;
-        }
-        
-        const text = element.getAttribute(`data-${lang}`);
-        if (text) {
-            if (element.hasAttribute('value')) {
-                element.value = text;
-            } else {
-                element.innerHTML = text;
-            }
-        }
-    });
-}
     </script>
 </body>
 </html>
-
-
-
-
